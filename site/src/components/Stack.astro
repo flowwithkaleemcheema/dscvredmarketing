@@ -1,0 +1,105 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { site } from '../config/site';
+
+const core = [
+  ['Exclusive Homeowner Ad Engine', 'Google Search, Local Services Ads, Facebook & Instagram. Built, managed and optimized weekly.', '$3,000/mo'],
+  ['Remodel Consultation Funnel', 'Conversion-built pages for kitchen, bath and whole-home, with budget and timeline qualifiers.', '$5,000'],
+  ['5-Minute Speed-to-Lead System', 'Instant text + email to every lead, alerts to your phone, missed-call text-back.', '$2,500'],
+  ['Homeowner Nurture Sequence', '30 days of follow-up for “not ready yet” homeowners, until they are.', '$1,500'],
+  ['Show-Up System', 'Online booking, confirmations, 24h and 2h reminders, pre-consult “what to expect.”', '$1,000'],
+  ['Google Business Profile Optimization', 'Categories, services, photos and posts tuned for Maps and Local Services Ads.', '$1,500'],
+  ['Tracking & Attribution', 'Call tracking, conversion tracking, CRM stages from first click to signed contract.', '$1,000'],
+  ['Done-For-You Management', 'A dedicated strategist, weekly optimization and a monthly 30-minute strategy call.', '$1,500/mo'],
+];
+const bonuses = [
+  ['Week-One Revenue Revival', 'We re-open your old leads and unsigned estimates before ads launch.', '$2,500'],
+  ['5-Star Review Engine', 'Automated review requests after every finished project.', '$1,500'],
+  ['Live Project ROI Dashboard', 'Spend → consultations → signed projects → revenue, in real time.', '$1,000'],
+];
+const { spotsLeft } = site.founding;
+const num = (v: string) => Number(v.replace(/[^0-9]/g, ''));
+const oneTime = [...core, ...bonuses].filter(([, , v]) => !v.endsWith('/mo')).reduce((t, [, , v]) => t + num(v), 0) + (spotsLeft > 0 ? 3000 : 0);
+const monthly = core.filter(([, , v]) => v.endsWith('/mo')).reduce((t, [, , v]) => t + num(v), 0);
+const usd = (n: number) => '$' + n.toLocaleString('en-US');
+---
+<section id="stack" class="py-24 lg:py-32 bg-paper-2/60 border-y border-line">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div class="lg:col-span-4" data-reveal>
+        <div class="lg:sticky lg:top-28">
+          <SectionLabel n="05">What you get</SectionLabel>
+          <h2 class="mt-5 text-4xl sm:text-5xl">A full marketing department for one remodeler.</h2>
+          <p class="mt-5 text-lg text-body">Everything it takes to go from “search” to “signed,” built for remodelers and run for you.</p>
+          <div class="mt-8 rounded-2xl bg-ink text-paper p-6">
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-brass">Your investment</p>
+            <p class="mt-3 text-[0.98rem] leading-relaxed text-paper/80">
+              One flat monthly fee, plus your ad budget (min. ${site.offer.minAdSpend.toLocaleString('en-US')}/mo), paid directly to Google &amp; Meta. <strong class="text-paper">You own every account.</strong>
+            </p>
+            <p class="mt-3 text-[0.98rem] leading-relaxed text-paper/80">We’ll walk through exact numbers on your audit call, against your own project values.</p>
+            <button type="button" data-open-check data-source="stack" class="btn btn-primary mt-6 w-full">
+              Check my market <span class="arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8" data-reveal style="--d:80ms">
+        <div class="card overflow-hidden ui-shadow">
+          <div class="flex items-center justify-between gap-4 px-5 sm:px-7 py-4 border-b border-line bg-card">
+            <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">Specification</p>
+            <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">Value</p>
+          </div>
+          <ul>
+            {core.map(([n, d, v], i) => (
+              <li class="flex gap-4 sm:gap-6 px-5 sm:px-7 py-5 border-b border-line">
+                <span class="font-mono text-xs text-muted pt-1 w-9 flex-none">S-{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-ink">{n}</p>
+                  <p class="mt-0.5 text-[0.92rem] text-body">{d}</p>
+                </div>
+                <span class="text-[0.95rem] font-semibold tabular-nums text-ink flex-none pt-0.5">{v}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="px-5 sm:px-7 py-3 bg-clay-soft/60 border-b border-line">
+            <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-clay-dark">Included bonuses</p>
+          </div>
+          <ul>
+            {bonuses.map(([n, d, v], i) => (
+              <li class="flex gap-4 sm:gap-6 px-5 sm:px-7 py-5 border-b border-line bg-[#fdf9f5]">
+                <span class="font-mono text-xs text-clay pt-1 w-9 flex-none">B-{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-ink">{n}</p>
+                  <p class="mt-0.5 text-[0.92rem] text-body">{d}</p>
+                </div>
+                <span class="text-[0.95rem] font-semibold tabular-nums text-ink flex-none pt-0.5">{v}</span>
+              </li>
+            ))}
+            {spotsLeft > 0 && (
+              <li class="flex gap-4 sm:gap-6 px-5 sm:px-7 py-5 border-b border-line bg-[#fdf9f5]">
+                <span class="font-mono text-xs text-clay pt-1 w-9 flex-none">B-04</span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-ink">Founding Partner: setup fee waived <span class="ml-1 inline-block rounded-full bg-clay text-white text-[0.65rem] font-semibold px-2 py-0.5 align-middle">{spotsLeft} left</span></p>
+                  <p class="mt-0.5 text-[0.92rem] text-body">For our first three remodeling partners only.</p>
+                </div>
+                <span class="text-[0.95rem] font-semibold tabular-nums text-ink flex-none pt-0.5">$3,000</span>
+              </li>
+            )}
+          </ul>
+          <!-- Title block -->
+          <div class="grid sm:grid-cols-2 bg-ink text-paper">
+            <div class="px-5 sm:px-7 py-6 border-b sm:border-b-0 sm:border-r border-line-dark">
+              <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-paper/50">Total setup value</p>
+              <p class="mt-1 font-display text-4xl">{usd(oneTime)}</p>
+            </div>
+            <div class="px-5 sm:px-7 py-6">
+              <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-paper/50">Ongoing value</p>
+              <p class="mt-1 font-display text-4xl">{usd(monthly)}<span class="text-xl text-paper/60">/mo</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

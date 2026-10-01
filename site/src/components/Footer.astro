@@ -1,0 +1,19 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../config/site';
+---
+<footer class="bg-ink text-paper/60 border-t border-line-dark pb-24 md:pb-0">
+  <div class="container-x py-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+    <div>
+      <Logo tone="light" />
+      <p class="mt-4 text-sm max-w-xs">Demand generation for high-ticket residential remodelers. US first; Australia &amp; UK next.</p>
+    </div>
+    <div class="flex flex-col md:items-end gap-2 text-sm">
+      <a href={`mailto:${site.email}`} class="hover:text-paper transition-colors">{site.email}</a>
+      <div class="flex gap-5">
+        <a href="/privacy" class="hover:text-paper transition-colors">Privacy</a>
+        <span>© {new Date().getFullYear()} {site.name}</span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,42 @@
+---
+import TerritoryInput from './TerritoryInput.astro';
+import HeroVisual from './HeroVisual.astro';
+import { site } from '../config/site';
+const { guaranteeCount, guaranteeDays } = site.offer;
+---
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 blueprint-grid [mask-image:radial-gradient(ellipse_80%_70%_at_70%_20%,#000_30%,transparent_75%)]" aria-hidden="true"></div>
+  <div class="container-x relative pt-10 pb-20 sm:pt-16 lg:pt-20 lg:pb-28 grid lg:grid-cols-12 gap-14 lg:gap-10 items-center">
+    <div class="lg:col-span-7">
+      <p class="font-mono text-[0.72rem] sm:text-xs uppercase tracking-[0.16em] text-muted" data-reveal>
+        For kitchen, bath &amp; whole-home remodelers · $1–5M/yr
+      </p>
+      <h1 class="mt-5 text-[2.65rem] sm:text-6xl lg:text-[4.35rem] leading-[1.02]" data-reveal style="--d:60ms">
+        {guaranteeCount} qualified design consultations in {guaranteeDays}&nbsp;days.
+        <span class="block italic text-clay mt-1 font-[380]">Or we work for free.</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-lg sm:text-xl leading-relaxed text-body" data-reveal style="--d:120ms">
+        We run your ads, landing pages and 5-minute follow-up so homeowners with real budgets ($30k+) land straight on your calendar.{' '}
+        <strong class="text-ink font-semibold">Exclusive to you. Never shared, never resold.</strong>
+      </p>
+      <div class="mt-9" data-reveal style="--d:180ms">
+        <TerritoryInput id="area-hero" source="hero" />
+      </div>
+    </div>
+    <div class="lg:col-span-5" data-reveal style="--d:200ms">
+      <HeroVisual />
+    </div>
+  </div>
+
+  <div class="relative border-y border-line bg-card/60">
+    <div class="container-x py-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
+      <p class="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted flex-none">Stop renting leads from</p>
+      <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-lg sm:text-xl text-ink/45">
+        {['Angi', 'HomeAdvisor', 'Thumbtack', 'Houzz', 'Porch'].map((n) => (
+          <li class="line-through decoration-clay/70 decoration-[1.5px]">{n}</li>
+        ))}
+      </ul>
+      <p class="md:ml-auto text-sm text-body"><strong class="text-ink">One remodeler per market.</strong> Yours, if it's still open.</p>
+    </div>
+  </div>
+</section>

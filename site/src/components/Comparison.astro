@@ -1,0 +1,87 @@
+---
+import SectionLabel from './SectionLabel.astro';
+const cols = ['Shared lead platforms', 'Typical marketing agency', 'Booked-Out Remodeler System'];
+const rows: { label: string; v: [string, string, string]; good?: [boolean, boolean] }[] = [
+  { label: 'Who gets the homeowner', v: ['You + 3–5 competitors', '~Usually exclusive, rarely qualified', 'Only you. Your brand, your ads'] },
+  { label: 'Budget checked before booking', v: ['No', 'Rarely', 'Yes. $30k+ before they hit your calendar'] },
+  { label: 'Speed to first contact', v: ['Whenever you get to it', 'Whenever you get to it', 'Auto-text in under 5 minutes, 24/7'] },
+  { label: 'What you pay for', v: ['Every lead, good or bad', 'Clicks & impressions', 'Booked consultations, guaranteed'] },
+  { label: 'What gets reported', v: ['Lead count', 'Reach, CTR, “engagement”', 'Spend → consults → signed projects'] },
+  { label: 'Competitors they also serve in your area', v: ['Unlimited', 'Often several', 'None. One remodeler per market'] },
+  { label: 'If it doesn’t work', v: ['Your loss', 'Your loss', 'We work for free until it does'] },
+];
+const x = '<svg class="size-4 flex-none mt-1 text-[#b3261e]/70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6.3 5 5 6.3 8.7 10 5 13.7 6.3 15l3.7-3.7 3.7 3.7 1.3-1.3-3.7-3.7L15 6.3 13.7 5 10 8.7z"/></svg>';
+const dash = '<svg class="size-4 flex-none mt-1 text-muted" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><rect x="5" y="9" width="10" height="2" rx="1"/></svg>';
+const icon = (v: string, i: number) => (i === 2 ? ok.replace('text-sage', 'text-[#8fc3a0]') : v.startsWith('~') ? dash : x);
+const clean = (v: string) => v.replace(/^~/, '');
+const ok = '<svg class="size-4 flex-none mt-1 text-sage" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>';
+---
+<section id="compare" class="py-24 lg:py-32 bg-paper-2/60 border-y border-line">
+  <div class="container-x">
+    <div class="max-w-3xl" data-reveal>
+      <SectionLabel n="02">The difference</SectionLabel>
+      <h2 class="mt-5 text-4xl sm:text-5xl">Rented leads vs. a pipeline you own.</h2>
+      <p class="mt-5 text-lg text-body">Lead platforms rent you attention. Agencies sell you activity. We build you a system, and we only get paid in full when it fills your calendar.</p>
+    </div>
+
+    <!-- Desktop table -->
+    <div class="mt-14 hidden md:block" data-reveal>
+      <table class="w-full border-separate border-spacing-0 text-left">
+        <caption class="sr-only">Comparison of shared lead platforms, typical marketing agencies and the Booked-Out Remodeler System</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="w-[24%]"></th>
+            {cols.map((c, i) => (
+              <th scope="col" class:list={[
+                'px-6 pb-5 pt-6 align-bottom font-semibold text-[0.95rem]',
+                i === 2 ? 'bg-ink text-paper rounded-t-2xl' : 'text-muted',
+              ]}>
+                {i === 2 ? <span class="block font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brass mb-1.5">Dscvred</span> : null}
+                {c}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r, ri) => (
+            <tr>
+              <th scope="row" class="py-5 pr-6 border-t border-line font-medium text-ink text-[0.95rem] align-top">{r.label}</th>
+              {r.v.map((v, i) => (
+                <td class:list={[
+                  'px-6 py-5 text-[0.95rem] align-top',
+                  i === 2 ? 'bg-ink text-paper border-t border-line-dark font-medium' : 'border-t border-line text-body',
+                  i === 2 && ri === rows.length - 1 && 'rounded-b-2xl',
+                ]}>
+                  <span class="flex gap-2.5">
+                    <Fragment set:html={icon(v, i)} />
+                    <span>{clean(v)}</span>
+                  </span>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="mt-10 md:hidden space-y-3">
+      {rows.map((r) => (
+        <div class="card p-5" data-reveal>
+          <p class="font-semibold text-ink">{r.label}</p>
+          <dl class="mt-3 space-y-2 text-[0.92rem]">
+            {r.v.map((v, i) => (
+              <div class:list={['flex gap-2.5', i === 2 && 'rounded-xl bg-ink text-paper p-3 -mx-1']}>
+                <Fragment set:html={icon(v, i)} />
+                <div>
+                  <dt class:list={['font-mono text-[0.62rem] uppercase tracking-[0.12em]', i === 2 ? 'text-brass' : 'text-muted']}>{i === 2 ? 'Dscvred' : cols[i]}</dt>
+                  <dd class:list={[i === 2 ? 'font-medium' : 'text-body']}>{clean(v)}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

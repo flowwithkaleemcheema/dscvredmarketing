@@ -1,0 +1,44 @@
+---
+/** Inline "foot in the door" field. Submitting opens the Territory Check dialog with the area prefilled. */
+interface Props { id: string; tone?: 'light' | 'dark'; source: string }
+const { id, tone = 'light', source } = Astro.props;
+const dark = tone === 'dark';
+---
+<form data-territory-form data-source={source} class="w-full max-w-xl" novalidate>
+  <label for={id} class:list={['block mb-2.5 text-sm font-semibold', dark ? 'text-paper' : 'text-ink']}>
+    Where do you build? <span class:list={['font-normal', dark ? 'text-paper/60' : 'text-muted']}>Enter your main service area</span>
+  </label>
+  <div class:list={[
+    'flex flex-col sm:flex-row gap-2 p-2 rounded-[1.4rem] sm:rounded-full border',
+    dark ? 'bg-ink-3 border-line-dark' : 'bg-white border-line ui-shadow',
+  ]}>
+    <div class="relative flex-1 min-w-0">
+      <svg class:list={['absolute left-4 top-1/2 -translate-y-1/2 size-5', dark ? 'text-paper/50' : 'text-muted']} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" />
+      </svg>
+      <input
+        id={id}
+        name="area"
+        type="text"
+        autocomplete="address-level2"
+        placeholder="e.g. Plano, TX"
+        class:list={[
+          'w-full h-12 pl-11 pr-4 rounded-full bg-transparent text-base focus:outline-none',
+          dark ? 'text-paper placeholder:text-paper/40' : 'text-ink placeholder:text-[#9a9286]',
+        ]}
+      />
+    </div>
+    <button type="submit" class="btn btn-primary h-12 !py-0">
+      Check my market <span class="arrow" aria-hidden="true">→</span>
+    </button>
+  </div>
+  <ul class:list={['mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm', dark ? 'text-paper/70' : 'text-muted']}>
+    {['60-second check', 'Free 30-min Pipeline Audit', 'Nothing to sign today'].map((t) => (
+      <li class="flex items-center gap-2">
+        <svg class="size-4 text-sage flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style={dark ? 'color:#8fc3a0' : ''}>
+          <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+        </svg>{t}
+      </li>
+    ))}
+  </ul>
+</form>

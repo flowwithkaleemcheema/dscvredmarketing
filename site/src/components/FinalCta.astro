@@ -1,0 +1,20 @@
+---
+import TerritoryInput from './TerritoryInput.astro';
+import Seal from './Seal.astro';
+---
+<section id="check" class="relative bg-ink text-paper/80 py-24 lg:py-36 overflow-hidden">
+  <div class="absolute inset-0 blueprint-grid-dark [mask-image:radial-gradient(ellipse_70%_80%_at_50%_40%,#000,transparent_80%)]" aria-hidden="true"></div>
+  <div class="container-x relative grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-8" data-reveal>
+      <p class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-brass">Your market is either open, or it’s someone else’s</p>
+      <h2 class="mt-5 text-[2.6rem] sm:text-6xl lg:text-[4.2rem] !text-paper leading-[1.02]">Check if your market is still available.</h2>
+      <p class="mt-6 text-lg sm:text-xl text-paper/70 max-w-2xl">
+        Answer a few quick questions. If it’s a fit, pick a time for your free 30-minute Pipeline Audit: your market’s search demand, your competitors’ ads, your lead leaks, and a plan for your budget.
+      </p>
+      <div class="mt-10"><TerritoryInput id="area-final" tone="dark" source="final" /></div>
+    </div>
+    <div class="hidden lg:flex lg:col-span-4 justify-center" data-reveal style="--d:120ms">
+      <Seal size={260} class="rotate-[-8deg] drop-shadow-[0_30px_50px_rgba(0,0,0,.5)]" />
+    </div>
+  </div>
+</section>

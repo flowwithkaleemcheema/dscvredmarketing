@@ -1,0 +1,7 @@
+---
+interface Props { n: string; tone?: 'dark' | 'light' }
+const { n, tone = 'dark' } = Astro.props;
+---
+<p class:list={['sheet-label', tone === 'light' && '!text-[#a8a093]']}>
+  <span>{n}</span><span aria-hidden="true">/</span><span><slot /></span>
+</p>

@@ -1,0 +1,58 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { site } from '../config/site';
+const f = site.founder;
+const isPh = (s: string) => /\[.*\]/.test(s);
+---
+<section id="founder" class="py-24 lg:py-32">
+  <div class="container-x grid lg:grid-cols-12 gap-12 lg:gap-16">
+    <div class="lg:col-span-4" data-reveal>
+      <div class="relative max-w-[340px]">
+        <div class="absolute -inset-3 border border-line rounded-[1.6rem]" aria-hidden="true"></div>
+        {f.photo ? (
+          <img src={f.photo} alt={f.name} width="680" height="820" loading="lazy" class="relative w-full aspect-[34/41] object-cover rounded-[1.25rem] grayscale-[15%]" />
+        ) : (
+          <div class="relative w-full aspect-[34/41] rounded-[1.25rem] bg-paper-2 blueprint-grid grid place-items-center">
+            <span class="font-display text-7xl text-ink/25">{f.initials}</span>
+            <span class="absolute bottom-4 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">Founder photo goes here</span>
+          </div>
+        )}
+        <p class="relative mt-6 font-display text-2xl text-ink"><span class:list={[isPh(f.name) && 'placeholder-mark']}>{f.name}</span></p>
+        <p class="relative text-sm text-muted">{f.title}</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-8" data-reveal style="--d:80ms">
+      <SectionLabel n="09">Why remodelers</SectionLabel>
+      <h2 class="mt-5 text-4xl sm:text-5xl">I’ll be straight with you.</h2>
+      <div class="mt-7 space-y-5 text-lg text-body max-w-2xl">
+        <p>
+          Dscvred is new to remodeling. We don’t have a wall of remodeler case studies yet, and I’m not going to fake one.
+        </p>
+        <p>
+          What we do have is <span class:list={[isPh(f.yearsExperience) && 'placeholder-mark']}>{f.yearsExperience}</span> years building
+          ads, funnels and follow-up systems that turn strangers into booked appointments for local businesses.
+          When I looked at where that work matters most, remodelers kept coming up: big project values, owners who can sell,
+          and a lead system that’s broken in exactly the ways we know how to fix.
+        </p>
+        <p>
+          So we built one offer for one kind of business, put a guarantee on it, and we’re taking three founding partners to prove it.{' '}
+          <strong class="text-ink">If we don’t deliver, you don’t pay us.</strong>
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">Results we’ve driven in other industries</p>
+        <div class="mt-4 grid sm:grid-cols-3 gap-4">
+          {site.results.map((r) => (
+            <div class="rounded-2xl border border-line p-5">
+              <p class="font-display text-4xl text-ink"><span class:list={[isPh(r.value) && 'placeholder-mark']}>{r.value}</span></p>
+              <p class="mt-1 font-medium text-ink">{r.label}</p>
+              <p class="mt-1 text-sm text-muted"><span class:list={[isPh(r.context) && 'placeholder-mark']}>{r.context}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import Logo from './Logo.astro';
+const links = [
+  { href: '#system', label: 'How it works' },
+  { href: '#guarantee', label: 'Guarantee' },
+  { href: '#roi', label: 'ROI' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+<header id="site-nav" class="sticky top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-300">
+  <nav class="container-x flex h-[4.25rem] items-center justify-between gap-6" aria-label="Main">
+    <a href="/" aria-label="Dscvred Marketing home"><Logo /></a>
+    <ul class="hidden md:flex items-center gap-8 text-[0.95rem] font-medium text-ink/75">
+      {links.map((l) => <li><a href={l.href} class="hover:text-ink transition-colors">{l.label}</a></li>)}
+    </ul>
+    <button type="button" data-open-check class="btn btn-primary !py-3 !px-5 text-[0.95rem]">
+      <span class="hidden sm:inline">Check my market</span><span class="sm:hidden">Check market</span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+</header>
+<script>
+  const nav = document.getElementById('site-nav')!;
+  const onScroll = () => {
+    const scrolled = window.scrollY > 24;
+    nav.classList.toggle('bg-paper/85', scrolled);
+    nav.classList.toggle('backdrop-blur-md', scrolled);
+    nav.classList.toggle('shadow-[0_1px_0_var(--color-line)]', scrolled);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

@@ -1,0 +1,77 @@
+---
+const appts = [
+  { day: 'Tue', time: '9:30 AM', type: 'Kitchen remodel', budget: '$85k', area: 'Frisco', status: 'Confirmed', tone: 'sage' },
+  { day: 'Wed', time: '4:00 PM', type: 'Primary bath + closet', budget: '$48k', area: 'Plano', status: 'Confirmed', tone: 'sage' },
+  { day: 'Thu', time: '10:00 AM', type: 'Whole-home refresh', budget: '$140k', area: 'Allen', status: 'Reminder sent', tone: 'brass' },
+  { day: 'Sat', time: '11:00 AM', type: 'Kitchen + mudroom', budget: '$72k', area: 'McKinney', status: 'Just booked', tone: 'clay' },
+];
+const chip: Record<string, string> = {
+  sage: 'bg-sage-soft text-sage',
+  brass: 'bg-[#f3e8d3] text-[#8a6a33]',
+  clay: 'bg-clay-soft text-clay-dark',
+};
+---
+<figure class="relative mx-auto w-full max-w-[560px] lg:max-w-none" aria-label="Illustrative example of a remodeler's booked consultation calendar">
+  <!-- Calendar -->
+  <div class="relative lg:w-[92%] card ui-shadow overflow-hidden">
+    <div class="flex items-center justify-between gap-3 px-5 py-4 border-b border-line">
+      <div>
+        <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">Design consultations</p>
+        <p class="font-display text-lg text-ink leading-tight mt-0.5">This week</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-ink text-paper text-xs font-semibold px-3 py-1.5">
+        <span class="size-1.5 rounded-full bg-[#7fb38f]"></span>4 booked
+      </span>
+    </div>
+    <ul class="divide-y divide-line">
+      {appts.map((a) => (
+        <li class="flex items-center gap-4 px-5 py-3.5">
+          <div class="w-12 flex-none text-center">
+            <p class="font-mono text-[0.68rem] uppercase tracking-wider text-muted">{a.day}</p>
+            <p class="text-[0.78rem] font-semibold text-ink whitespace-nowrap">{a.time.replace(' ', '\u00a0')}</p>
+          </div>
+          <div class="min-w-0 flex-1 border-l-2 border-clay/70 pl-3">
+            <p class="font-semibold text-ink text-[0.95rem] truncate">{a.type}</p>
+            <p class="text-[0.8rem] text-muted truncate">Budget {a.budget} · {a.area}</p>
+          </div>
+          <span class={`hidden sm:inline-flex flex-none rounded-full px-2.5 py-1 text-[0.7rem] font-semibold ${chip[a.tone]}`}>{a.status}</span>
+        </li>
+      ))}
+    </ul>
+    <!-- Guarantee tracker (left half; the text card overlaps the right) -->
+    <div class="border-t border-line bg-paper-2/50 px-5 pt-4 pb-20 sm:pb-6">
+      <div class="sm:w-[44%]">
+        <div class="flex items-baseline justify-between gap-3 whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.1em] text-muted">
+          <span>Guarantee</span><span><strong class="text-ink">14</strong>/20 · Day 52</span>
+        </div>
+        <div class="mt-2 h-1.5 rounded-full bg-line overflow-hidden"><div class="h-full w-[70%] rounded-full bg-sage"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speed-to-lead SMS -->
+  <div class="relative -mt-16 ml-auto w-[90%] sm:w-[58%] lg:-mr-2 floaty">
+    <div class="card ui-shadow p-4 !rounded-2xl bg-white">
+      <div class="flex items-center justify-between gap-2">
+        <p class="text-[0.78rem] font-semibold text-ink flex items-center gap-2">
+          <span class="grid place-items-center size-6 rounded-full bg-clay text-white text-[0.65rem]">JM</span>
+          New lead · Kitchen
+        </p>
+        <p class="font-mono text-[0.65rem] text-muted whitespace-nowrap">$60–90k</p>
+      </div>
+      <div class="mt-3 ml-auto max-w-[94%] rounded-2xl rounded-br-md bg-ink text-paper px-3.5 py-2.5 text-[0.82rem] leading-snug">
+        Hi Jessica, thanks for reaching out about your kitchen! Want to grab a design consultation this week? Here are a few open times →
+      </div>
+      <div class="mt-2 flex items-center justify-between">
+        <span class="typing inline-flex gap-1 rounded-full bg-paper-2 px-3 py-2" aria-label="Homeowner is typing">
+          <span class="size-1.5 rounded-full bg-muted"></span><span class="size-1.5 rounded-full bg-muted"></span><span class="size-1.5 rounded-full bg-muted"></span>
+        </span>
+        <span class="font-mono text-[0.65rem] text-sage font-semibold">✓ Auto-sent in 0:41</span>
+      </div>
+    </div>
+  </div>
+
+  <figcaption class="mt-4 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-muted/80">
+    Illustrative example · not a real client
+  </figcaption>
+</figure>

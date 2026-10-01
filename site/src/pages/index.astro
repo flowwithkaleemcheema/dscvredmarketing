@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import Comparison from '../components/Comparison.astro';
+import System from '../components/System.astro';
+import Launch from '../components/Launch.astro';
+import Stack from '../components/Stack.astro';
+import Calculator from '../components/Calculator.astro';
+import Guarantee from '../components/Guarantee.astro';
+import Founding from '../components/Founding.astro';
+import Founder from '../components/Founder.astro';
+import Fit from '../components/Fit.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import MobileCta from '../components/MobileCta.astro';
+import CheckDialog from '../components/CheckDialog.astro';
+import { site } from '../config/site';
+import { faq } from '../data/faq';
+
+const { guaranteeCount: n, guaranteeDays: d } = site.offer;
+const title = `${n} Qualified Remodeling Consultations in ${d} Days, Guaranteed | ${site.name}`;
+const description = `Done-for-you ads, funnels and 5-minute follow-up for kitchen, bath and whole-home remodelers. ${n} qualified design consultations in ${d} days, or we work for free. One remodeler per market.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: site.name,
+    url: site.url,
+    description,
+    areaServed: 'US',
+    serviceType: 'Marketing and lead generation for residential remodelers',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<Base title={title} description={description} jsonLd={jsonLd}>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
+  <TopBar />
+  <Nav />
+  <main id="main">
+    <Hero />
+    <Problem />
+    <Comparison />
+    <System />
+    <Launch />
+    <Stack />
+    <Calculator />
+    <Guarantee />
+    <Founding />
+    <Founder />
+    <Fit />
+    <Faq />
+    <FinalCta />
+  </main>
+  <Footer />
+  <MobileCta />
+  <CheckDialog />
+</Base>

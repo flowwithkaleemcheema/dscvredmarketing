@@ -1,0 +1,27 @@
+<!-- Sticky bottom CTA on small screens, shown once the hero is out of view -->
+<div id="mobile-cta" class="md:hidden fixed inset-x-0 bottom-0 z-40 p-3 translate-y-full transition-transform duration-300" aria-hidden="true">
+  <div class="rounded-full bg-ink/95 backdrop-blur p-1.5 pl-5 flex items-center justify-between gap-3 shadow-[0_10px_30px_rgba(0,0,0,.35)]">
+    <p class="text-[0.82rem] text-paper/85 leading-tight">20 consults in 90 days<br /><span class="text-paper/55">or we work for free</span></p>
+    <button type="button" data-open-check data-source="mobile_bar" class="btn btn-primary !py-3 !px-4 text-sm" tabindex="-1">
+      Check my market <span class="arrow" aria-hidden="true">→</span>
+    </button>
+  </div>
+</div>
+<script>
+  const bar = document.getElementById('mobile-cta')!;
+  const btn = bar.querySelector('button')!;
+  const hero = document.querySelector('h1');
+  const finalSection = document.getElementById('check');
+  let pastHero = false;
+  let atFinal = false;
+  const render = () => {
+    const show = pastHero && !atFinal;
+    bar.classList.toggle('translate-y-full', !show);
+    bar.setAttribute('aria-hidden', String(!show));
+    btn.tabIndex = show ? 0 : -1;
+  };
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; render(); }).observe(hero);
+    if (finalSection) new IntersectionObserver(([e]) => { atFinal = e.isIntersecting; render(); }, { threshold: 0.2 }).observe(finalSection);
+  }
+</script>

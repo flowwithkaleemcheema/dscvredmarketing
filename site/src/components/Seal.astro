@@ -1,0 +1,19 @@
+---
+import { site } from '../config/site';
+interface Props { size?: number; class?: string }
+const { size = 168, class: cls = '' } = Astro.props;
+const { guaranteeCount: n, guaranteeDays: d } = site.offer;
+---
+<svg width={size} height={size} viewBox="0 0 200 200" class={cls} role="img" aria-label={`The Booked-Out Guarantee: ${n} consultations in ${d} days`}>
+  <defs>
+    <path id="seal-circle" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" />
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="#ad4721" />
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#f4efe6" stroke-opacity=".45" stroke-width="1" />
+  <circle cx="100" cy="100" r="58" fill="none" stroke="#f4efe6" stroke-opacity=".45" stroke-width="1" />
+  <text font-family="JetBrains Mono Variable, monospace" font-size="11" fill="#f4efe6" font-weight="600">
+    <textPath href="#seal-circle" textLength="452" lengthAdjust="spacing">THE BOOKED-OUT GUARANTEE ✦ OR WE WORK FOR FREE ✦</textPath>
+  </text>
+  <text x="100" y="104" text-anchor="middle" font-family="Fraunces Variable, serif" font-size="46" fill="#f4efe6" font-weight="500">{n}</text>
+  <text x="100" y="126" text-anchor="middle" font-family="JetBrains Mono Variable, monospace" font-size="9" letter-spacing="2" fill="#f4efe6" fill-opacity=".85">IN {d} DAYS</text>
+</svg>

@@ -1,0 +1,29 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { faq } from '../data/faq';
+import { site } from '../config/site';
+---
+<section id="faq" class="py-24 lg:py-32">
+  <div class="container-x grid lg:grid-cols-12 gap-10 lg:gap-16">
+    <div class="lg:col-span-4" data-reveal>
+      <div class="lg:sticky lg:top-28">
+        <SectionLabel n="11">Questions</SectionLabel>
+        <h2 class="mt-5 text-4xl sm:text-5xl">The honest answers.</h2>
+        <p class="mt-5 text-body">Something we didn’t cover? Ask us on your audit call, or email <a class="text-ink underline decoration-line underline-offset-4 hover:decoration-ink" href={`mailto:${site.email}`}>{site.email}</a>.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-8 border-t border-line" data-reveal style="--d:80ms">
+      {faq.map((f, i) => (
+        <details class="faq group border-b border-line" open={i === 0}>
+          <summary class="flex items-start justify-between gap-6 py-6 text-left">
+            <span class="font-display text-xl sm:text-[1.4rem] text-ink leading-snug">{f.q}</span>
+            <span class="faq-icon grid place-items-center size-8 rounded-full border border-line text-ink flex-none mt-0.5" aria-hidden="true">
+              <svg class="size-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 1v12M1 7h12" /></svg>
+            </span>
+          </summary>
+          <p class="pb-7 pr-12 text-[1.02rem] text-body leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { site } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description, path = '/', noindex = false, jsonLd = [] } = Astro.props;
+const canonical = new URL(path, site.url).toString();
+const ogImage = new URL('/og.png', site.url).toString();
+const { ga4Id, metaPixelId } = site.tracking;
+
+// Surface leftover placeholders at build time so nothing ships with "[X]" in it.
+if (import.meta.env.PROD) {
+  const leftovers = JSON.stringify(site).match(/\[[^\]"]{1,40}\]/g);
+  if (leftovers && !(globalThis as any).__phWarned) {
+    (globalThis as any).__phWarned = true;
+    console.warn(`\n⚠  site config still has placeholders: ${[...new Set(leftovers)].join(', ')}\n`);
+  }
+}
+---
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#f4efe6" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    {jsonLd.map((data) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+
+    {ga4Id && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+        <script is:inline define:vars={{ ga4Id }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { dataLayer.push(arguments); };
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        </script>
+      </>
+    )}
+
+    {metaPixelId && (
+      <script is:inline define:vars={{ metaPixelId }}>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', metaPixelId);
+        fbq('track', 'PageView');
+      </script>
+    )}
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/reveal';
+      import '../scripts/attribution';
+    </script>
+  </body>
+</html>

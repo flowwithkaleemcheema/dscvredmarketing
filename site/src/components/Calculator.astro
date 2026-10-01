@@ -1,0 +1,99 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { site } from '../config/site';
+const n = site.offer.guaranteeCount;
+const sliders = [
+  { id: 'avg', label: 'Your average project value', min: 25000, max: 200000, step: 5000, value: 65000, fmt: 'usd' },
+  { id: 'close', label: 'Your close rate on consultations', min: 10, max: 50, step: 1, value: 25, fmt: 'pct' },
+  { id: 'margin', label: 'Your gross margin', min: 15, max: 50, step: 1, value: 32, fmt: 'pct' },
+];
+---
+<section id="roi" class="relative bg-ink text-paper/80 py-24 lg:py-32 overflow-hidden">
+  <div class="absolute inset-0 blueprint-grid-dark [mask-image:radial-gradient(ellipse_70%_60%_at_80%_50%,#000,transparent_75%)]" aria-hidden="true"></div>
+  <div class="container-x relative grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <div class="lg:col-span-5" data-reveal>
+      <SectionLabel n="06" tone="light">The math</SectionLabel>
+      <h2 class="mt-5 text-4xl sm:text-5xl !text-paper">What are {n} consultations worth to you?</h2>
+      <p class="mt-5 text-lg text-paper/70">Move the sliders to match your business. The consultations are what we guarantee. Closing them is your craft.</p>
+
+      <form id="roi-form" class="mt-10 space-y-8" onsubmit="return false">
+        {sliders.map((s) => (
+          <div>
+            <div class="flex items-baseline justify-between gap-4">
+              <label for={`roi-${s.id}`} class="text-[0.95rem] text-paper/85">{s.label}</label>
+              <output for={`roi-${s.id}`} id={`roi-${s.id}-out`} class="font-mono text-paper font-semibold">
+                {s.fmt === 'usd' ? '$' + s.value.toLocaleString('en-US') : s.value + '%'}
+              </output>
+            </div>
+            <input id={`roi-${s.id}`} type="range" class="range mt-2" min={s.min} max={s.max} step={s.step} value={s.value} data-fmt={s.fmt} />
+          </div>
+        ))}
+      </form>
+    </div>
+
+    <div class="lg:col-span-7" data-reveal style="--d:100ms">
+      <div class="rounded-[1.75rem] border border-line-dark bg-ink-2 p-6 sm:p-10 shadow-[0_40px_80px_-40px_rgba(0,0,0,.7)]">
+        <div class="grid sm:grid-cols-3 gap-6 sm:gap-4">
+          <div>
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-paper/50">Guaranteed consults</p>
+            <p class="mt-2 font-display text-5xl text-paper">{n}</p>
+          </div>
+          <div>
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-paper/50">Projects you sign</p>
+            <p class="mt-2 font-display text-5xl text-paper" id="roi-projects">5</p>
+          </div>
+          <div>
+            <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-paper/50">Per project profit</p>
+            <p class="mt-2 font-display text-5xl text-paper" id="roi-per">$20.8k</p>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-line-dark">
+          <p class="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-brass">Signed revenue from {n} consultations</p>
+          <p class="mt-2 font-display text-6xl sm:text-7xl lg:text-[5.5rem] leading-none text-paper tracking-[-0.03em]" id="roi-revenue" aria-live="polite">$325,000</p>
+          <p class="mt-4 text-lg text-paper/70">≈ <span id="roi-profit" class="text-paper font-semibold">$104,000</span> in gross profit, in the first {site.offer.guaranteeDays} days.</p>
+        </div>
+        <p class="mt-8 rounded-xl bg-ink-3 px-4 py-3.5 text-[0.92rem] text-paper/75 leading-relaxed">
+          <strong class="text-paper">One signed project usually covers months of our fee plus your ad spend.</strong>{' '}
+          Everything after that is profit and a fuller calendar.
+        </p>
+        <p class="mt-4 text-xs text-paper/40">Projections for illustration, based on your inputs. Only the {n} qualified consultations are guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { site } from '../config/site';
+  const n = site.offer.guaranteeCount;
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const usd = (v: number) => '$' + Math.round(v).toLocaleString('en-US');
+  const short = (v: number) => (v >= 1000 ? '$' + (v / 1000).toFixed(v >= 100000 ? 0 : 1).replace(/\.0$/, '') + 'k' : usd(v));
+  const inputs = ['avg', 'close', 'margin'].map((id) => $(`roi-${id}`));
+  let touched = false;
+
+  function update() {
+    const [avg, close, margin] = inputs.map((i) => Number(i.value));
+    for (const i of inputs) {
+      const pct = ((Number(i.value) - Number(i.min)) / (Number(i.max) - Number(i.min))) * 100;
+      i.style.setProperty('--fill', pct + '%');
+      const out = document.getElementById(`${i.id}-out`)!;
+      out.textContent = i.dataset.fmt === 'usd' ? usd(Number(i.value)) : i.value + '%';
+    }
+    const projects = (n * close) / 100;
+    const revenue = projects * avg;
+    document.getElementById('roi-projects')!.textContent = projects % 1 ? projects.toFixed(1) : String(projects);
+    document.getElementById('roi-per')!.textContent = short((avg * margin) / 100);
+    document.getElementById('roi-revenue')!.textContent = usd(revenue);
+    document.getElementById('roi-profit')!.textContent = usd((revenue * margin) / 100);
+  }
+  inputs.forEach((i) =>
+    i.addEventListener('input', () => {
+      update();
+      if (!touched) {
+        touched = true;
+        import('../scripts/track').then(({ track }) => track('roi_calculator_used'));
+      }
+    }),
+  );
+  update();
+</script>

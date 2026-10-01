@@ -1,0 +1,144 @@
+---
+import { steps } from '../data/check-steps';
+import Logo from './Logo.astro';
+const total = steps.length;
+---
+<dialog id="check-dialog" class="check-dialog" aria-labelledby="check-heading">
+  <div class="flex flex-col max-h-[calc(100dvh-1.5rem)] rounded-[1.5rem] bg-paper shadow-[0_40px_120px_-20px_rgba(0,0,0,.55)] overflow-hidden">
+    <!-- Header -->
+    <div class="flex-none px-5 sm:px-8 pt-5 pb-4 border-b border-line bg-card">
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <Logo class="scale-[.85] origin-left" />
+        </div>
+        <button type="button" data-close-check class="grid place-items-center size-9 rounded-full hover:bg-paper-2 text-ink flex-none" aria-label="Close">
+          <svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13" /></svg>
+        </button>
+      </div>
+      <div data-progress-wrap class="mt-4">
+        <div class="flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
+          <span id="check-heading">Territory check</span>
+          <span><span data-step-num>1</span> / {total}</span>
+        </div>
+        <div class="mt-2 h-1 rounded-full bg-paper-2 overflow-hidden">
+          <div data-progress class="h-full rounded-full bg-clay transition-[width] duration-500 ease-out" style={`width:${100 / total}%`}></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <form id="check-form" class="flex-1 min-h-0 overflow-y-auto" novalidate>
+      <!-- Honeypot: humans never see this -->
+      <div class="absolute -left-[9999px]" aria-hidden="true">
+        <label>Leave this empty <input type="text" name="company_fax" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      {steps.map((s, i) => (
+        <fieldset data-step={i} data-step-id={s.id} data-kind={s.kind} class="step-panel px-5 sm:px-8 py-7 sm:py-8" hidden={i !== 0}>
+          <legend class="contents">
+            <span class="block font-display text-[1.6rem] sm:text-3xl text-ink leading-tight tracking-[-0.02em]">{s.title}</span>
+          </legend>
+          {s.sub && <p class="mt-2 text-body">{s.sub}</p>}
+
+          {s.kind === 'text' && (
+            <div class="mt-6">
+              <label for={`f-${s.id}`} class="sr-only">{s.title}</label>
+              <input id={`f-${s.id}`} name={s.id} type="text" class="field text-lg" placeholder={s.placeholder} autocomplete={s.autocomplete} required />
+            </div>
+          )}
+
+          {(s.kind === 'single' || s.kind === 'multi') && (
+            <div class="mt-6 grid gap-2.5 sm:grid-cols-2">
+              {s.options.map((o) => (
+                <label class="option-tile" data-multi={s.kind === 'multi' ? '' : undefined}>
+                  <input type={s.kind === 'single' ? 'radio' : 'checkbox'} name={s.id} value={o.value} class="sr-only" />
+                  <span class="tick" aria-hidden="true"></span>
+                  <span>{o.label}</span>
+                </label>
+              ))}
+            </div>
+          )}
+
+          {s.kind === 'contact' && (
+            <div class="mt-6 grid gap-3.5 sm:grid-cols-2">
+              <div>
+                <label for="f-name" class="block text-sm font-semibold text-ink mb-1.5">Your name</label>
+                <input id="f-name" name="name" type="text" class="field" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="f-company" class="block text-sm font-semibold text-ink mb-1.5">Company</label>
+                <input id="f-company" name="company" type="text" class="field" autocomplete="organization" required />
+              </div>
+              <div>
+                <label for="f-email" class="block text-sm font-semibold text-ink mb-1.5">Email</label>
+                <input id="f-email" name="email" type="email" class="field" autocomplete="email" inputmode="email" required />
+              </div>
+              <div>
+                <label for="f-phone" class="block text-sm font-semibold text-ink mb-1.5">Mobile</label>
+                <input id="f-phone" name="phone" type="tel" class="field" autocomplete="tel" inputmode="tel" required />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="f-website" class="block text-sm font-semibold text-ink mb-1.5">Website <span class="font-normal text-muted">(optional)</span></label>
+                <input id="f-website" name="website" type="text" class="field" autocomplete="url" inputmode="url" placeholder="yourcompany.com" />
+              </div>
+              <p class="sm:col-span-2 text-xs text-muted leading-relaxed">
+                By continuing you agree we may contact you by phone, text and email about your audit. No spam, no list-selling. Reply STOP to opt out.
+                See our <a href="/privacy" class="underline" target="_blank">privacy policy</a>.
+              </p>
+            </div>
+          )}
+
+          <p data-error class="mt-4 text-sm font-medium text-[#b3261e]" role="alert" hidden></p>
+        </fieldset>
+      ))}
+
+      <!-- Results -->
+      <div data-result="sending" class="px-5 sm:px-8 py-16 text-center" hidden>
+        <div class="mx-auto size-10 rounded-full border-2 border-line border-t-clay animate-spin" aria-hidden="true"></div>
+        <p class="mt-5 font-display text-2xl text-ink">Checking your market…</p>
+      </div>
+
+      <div data-result="qualified" class="px-5 sm:px-8 py-7 sm:py-8" hidden>
+        <div class="flex items-center gap-2.5">
+          <span class="grid place-items-center size-7 rounded-full bg-sage text-white" aria-hidden="true">
+            <svg class="size-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" /></svg>
+          </span>
+          <p data-market-status class="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-sage font-semibold">Market open</p>
+        </div>
+        <p class="mt-4 font-display text-[1.7rem] sm:text-3xl text-ink leading-tight tracking-[-0.02em]" data-qualified-title>Good news: your market is open.</p>
+        <p class="mt-2 text-body" data-qualified-sub>Pick a time for your free 30-minute Pipeline Audit. We’ll come prepared with your market’s numbers.</p>
+        <div id="cal-inline" class="mt-6 -mx-2 min-h-[420px] rounded-xl overflow-hidden" hidden></div>
+        <div data-no-cal class="mt-6 rounded-2xl bg-card border border-line p-5" hidden>
+          <p class="font-semibold text-ink">We’ll be in touch within one business day.</p>
+          <p class="mt-1 text-body text-[0.95rem]">Keep an eye on your phone and inbox. We’ll reach out to book your audit at a time that suits you.</p>
+        </div>
+        <p data-cal-fallback class="mt-4 text-sm text-muted" hidden>
+          Calendar not loading? <a data-cal-link href="#" target="_blank" rel="noopener" class="text-ink underline underline-offset-4">Open it in a new tab →</a>
+        </p>
+      </div>
+
+      <div data-result="not-fit" class="px-5 sm:px-8 py-7 sm:py-8" hidden>
+        <p class="font-display text-[1.7rem] sm:text-3xl text-ink leading-tight tracking-[-0.02em]">Thanks, <span data-first-name>there</span>. We’re not the right fit just yet.</p>
+        <p class="mt-3 text-body" data-not-fit-reason></p>
+        <p class="mt-3 text-body">We’ve saved your details, and we’ll reach out if that changes. In the meantime, three things that move the needle this week:</p>
+        <ol class="mt-5 space-y-3">
+          <li class="flex gap-3"><span class="font-mono text-clay">01</span><span class="text-ink">Call every new lead within 5 minutes. It’s the single biggest lever on booked appointments.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-clay">02</span><span class="text-ink">Text every unsigned estimate from the last 6 months. A short, personal check-in revives more than you’d think.</span></li>
+          <li class="flex gap-3"><span class="font-mono text-clay">03</span><span class="text-ink">Ask your last 10 happy clients for a Google review, with a direct link.</span></li>
+        </ol>
+      </div>
+    </form>
+
+    <!-- Footer nav -->
+    <div data-nav class="flex-none flex items-center justify-between gap-3 px-5 sm:px-8 py-4 border-t border-line bg-card">
+      <button type="button" data-back class="btn btn-ghost !py-3 !px-4 text-[0.95rem] invisible">← Back</button>
+      <button type="button" data-next class="btn btn-primary !py-3 !px-6 text-[0.95rem]">
+        <span data-next-label>Continue</span> <span class="arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  import '../scripts/check-form';
+</script>

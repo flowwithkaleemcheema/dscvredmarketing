@@ -1,0 +1,64 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import { site } from '../config/site';
+const { launchDays, guaranteeDays } = site.offer;
+const timeline = [
+  { d: 'Day 0', t: 'You’re in', b: 'Agreement signed, your market is locked, kickoff booked.' },
+  { d: 'Days 1–3', t: 'Kickoff call', b: 'Service area, project types, budget minimum, and exactly what counts as “qualified.”' },
+  { d: 'Days 3–7', t: 'Revival goes out', b: 'Your old leads and unsigned estimates hear from you again.' },
+  { d: 'Days 3–12', t: 'We build', b: 'Funnel, follow-up, tracking, Google Business Profile and ads.' },
+  { d: `Day ${launchDays}`, t: 'Ads live', b: `Your ${guaranteeDays}-day guarantee clock starts today.`, hi: true },
+  { d: `Day ${guaranteeDays}`, t: 'Guarantee review', b: 'Hit it? Month-to-month from here. Missed? We keep working for free.' },
+];
+---
+<section id="launch" class="py-24 lg:py-32">
+  <div class="container-x">
+    <!-- Week-one revival -->
+    <div class="card overflow-hidden grid lg:grid-cols-2" data-reveal>
+      <div class="p-7 sm:p-10 lg:p-14">
+        <SectionLabel n="04">Week one</SectionLabel>
+        <h2 class="mt-5 text-4xl sm:text-[2.75rem]">Wins before your ads even go live.</h2>
+        <p class="mt-5 text-lg text-body">
+          In week one we text and email the old leads and unsigned estimates from your last 12–24 months.
+          Most remodelers are sitting on a stack of “we’ll think about it” quotes. Some of them have finished thinking.
+        </p>
+        <p class="mt-5 text-body">It’s called the <strong class="text-ink">Week-One Revenue Revival</strong>, and it’s included free.</p>
+      </div>
+      <div class="relative bg-paper-2 p-6 sm:p-10 lg:p-12 flex items-center">
+        <div class="absolute inset-0 blueprint-grid opacity-70" aria-hidden="true"></div>
+        <div class="relative w-full max-w-md mx-auto space-y-3" aria-label="Illustrative text conversation with a past estimate">
+          <p class="text-center font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">Estimate sent 7 months ago</p>
+          <div class="ml-auto max-w-[85%] rounded-2xl rounded-br-md bg-ink text-paper px-4 py-3 text-[0.92rem] leading-snug ui-shadow">
+            Hi Mark, Dave here. Last spring we drew up a kitchen plan for you. Still on the wish list? We’ve opened a few design consultation slots in March.
+          </div>
+          <div class="max-w-[80%] rounded-2xl rounded-bl-md bg-white text-ink px-4 py-3 text-[0.92rem] leading-snug ui-shadow">
+            Funny timing, we were just talking about it. Does Thursday work?
+          </div>
+          <div class="ml-auto w-fit rounded-full bg-sage-soft text-sage text-xs font-semibold px-3 py-1.5">✓ Consultation booked · Thu 10:00 AM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-24 lg:mt-28" data-reveal>
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+        <h2 class="text-4xl sm:text-5xl max-w-2xl">Live in {launchDays} days. Your time: one kickoff call.</h2>
+        <p class="text-body max-w-sm lg:text-right">A 60-minute kickoff and a few quick approvals. We handle every build, every setting, every account.</p>
+      </div>
+      <ol class="mt-12 grid sm:grid-cols-2 lg:grid-cols-6 gap-x-5 gap-y-8 relative">
+        <div class="hidden lg:block absolute left-0 right-0 top-[0.55rem] h-px bg-line" aria-hidden="true"></div>
+        {timeline.map((s, i) => (
+          <li class="relative pl-7 lg:pl-0 lg:pt-8" data-reveal style={`--d:${i * 60}ms`}>
+            <span class:list={[
+              'absolute left-0 top-1 lg:top-0 size-[1.1rem] rounded-full border-2',
+              s.hi ? 'bg-clay border-clay shadow-[0_0_0_5px_var(--color-clay-soft)]' : 'bg-paper border-ink/70',
+            ]} aria-hidden="true"></span>
+            <p class:list={['font-mono text-[0.72rem] uppercase tracking-[0.12em]', s.hi ? 'text-clay font-semibold' : 'text-muted']}>{s.d}</p>
+            <p class="mt-1.5 font-semibold text-ink">{s.t}</p>
+            <p class="mt-1 text-[0.92rem] text-body leading-relaxed">{s.b}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
