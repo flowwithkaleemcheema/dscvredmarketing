@@ -1,4 +1,4 @@
-# Discovered Marketing: Grand Slam Offer v1
+# Dscvred Marketing: Grand Slam Offer v1
 
 > Built on the ICP in [`01-ideal-customer-profile.md`](./01-ideal-customer-profile.md), using Alex Hormozi's *$100M Offers* framework (value equation, problems → solutions, trim & stack, scarcity, urgency, bonuses, guarantee, MAGIC naming).
 > **Avatar:** US owner-operated residential remodelers doing $1M–$5M a year; kitchen, bath and whole-home projects of $40k–$150k+.
@@ -88,7 +88,7 @@ Every obstacle a remodeler faces between "I need more good projects" and "I'm bo
 |---|---|
 | **Setup fee** | $3,000 one-time (**waived for the first 3 Founding Partners**) |
 | **Monthly retainer** | $3,500 / month |
-| **Performance bonus** | $500 per signed project of $40k+ that came from a Discovered-sourced consultation, **capped at $2,000 / month** |
+| **Performance bonus** | $500 per signed project of $40k+ that came from a Dscvred-sourced consultation, **capped at $2,000 / month** |
 | **Ad spend** | Paid by the client directly to Google and Meta. **Minimum $3,000 / month.** The client owns the ad accounts. |
 | **Term** | **90-day initial term**, then month-to-month with 30 days' notice |
 | **Launch** | Ads live within **14 days** of signed agreement + access |
@@ -199,7 +199,7 @@ Every obstacle a remodeler faces between "I need more good projects" and "I'm bo
 
 > **For** owner-operated residential remodelers doing $1–5M a year
 > **who are** stuck between unpredictable referrals and shared Angi/HomeAdvisor leads,
-> **Discovered Marketing's Booked-Out Remodeler System** is a done-for-you ads, funnel and follow-up system
+> **Dscvred Marketing's Booked-Out Remodeler System** is a done-for-you ads, funnel and follow-up system
 > **that** delivers 20 qualified, exclusive in-home design consultations in 90 days, guaranteed.
 > **Unlike** lead platforms and generalist agencies, we work with **one remodeler per market**, report in **signed projects, not clicks**, and **work for free** until the guarantee is met.
 

@@ -1,4 +1,4 @@
-# Discovered Marketing: Ideal Customer Profile (ICP) v1
+# Dscvred Marketing: Ideal Customer Profile (ICP) v1
 
 > **Status:** v1, built from founder inputs. Items marked *(validate)* are working assumptions. Confirm or correct them in the first 10–20 discovery calls.
 > **Launch market:** United States. Australia and the UK follow in phase 2 (see §11).
@@ -215,7 +215,7 @@ Same ICP logic applies. Swap terminology, platforms, currency and examples on lo
 
 ## 12. Agency context (feeds the offer)
 
-- **Agency:** Discovered Marketing
+- **Agency:** Dscvred Marketing
 - **Delivery:** Paid ads (Google Search, Local Services Ads, Meta), local SEO and Google Business Profile, landing pages, funnels and CRO, **plus** a speed-to-lead and nurture CRM system (missed-call text-back, instant SMS and email, nurture sequences, old-lead and past-estimate reactivation)
 - **Proof:** Results in other industries; no remodeling case studies yet, so the offer needs strong risk reversal and founding-partner positioning
 - **Pricing model:** Setup fee + monthly retainer + performance bonus

@@ -1,4 +1,4 @@
-# Discovered Marketing
+# Dscvred Marketing
 
 Demand generation for high-ticket local businesses in the US, Australia and the UK. Launching first with US residential remodelers.
 
