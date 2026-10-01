@@ -34,7 +34,7 @@ export const site = {
     // Cal.com event link, e.g. 'your-name/pipeline-audit'
     calLink: '',
     // Your Cal.com brand colour (matches the site)
-    calBrandColor: '#ad4721',
+    calBrandColor: '#14302a',
   },
 
   tracking: {

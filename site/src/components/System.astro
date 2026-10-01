@@ -42,13 +42,13 @@ const steps = [
     </div>
 
     <div class="mt-16 lg:mt-20 relative">
-    <div class="hidden lg:block absolute left-[1.45rem] top-4 bottom-4 w-px bg-gradient-to-b from-line-dark via-brass/40 to-line-dark" aria-hidden="true"></div>
+    <div class="hidden lg:block absolute left-[1.45rem] top-4 bottom-4 w-px bg-gradient-to-b from-line-dark via-oak-light/40 to-line-dark" aria-hidden="true"></div>
     <ol>
       {steps.map((s, i) => (
         <li class="relative grid lg:grid-cols-12 gap-8 lg:gap-12 py-10 lg:py-12 border-t border-line-dark first:border-t-0 items-center" data-reveal>
           <div class="lg:col-span-6 lg:pl-20 relative">
-            <span class="hidden lg:grid absolute left-0 top-0 size-[2.9rem] place-items-center rounded-full border border-brass/50 bg-ink font-mono text-sm text-brass">0{i + 1}</span>
-            <p class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-brass"><span class="lg:hidden">0{i + 1} · </span>{s.k}</p>
+            <span class="hidden lg:grid absolute left-0 top-0 size-[2.9rem] place-items-center rounded-full border border-oak-light/50 bg-ink font-mono text-sm text-oak-light">0{i + 1}</span>
+            <p class="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-oak-light"><span class="lg:hidden">0{i + 1} · </span>{s.k}</p>
             <h3 class="mt-2 text-3xl sm:text-[2.1rem] !text-paper">{s.name}</h3>
             <p class="mt-4 text-[1.05rem] leading-relaxed text-paper/70 max-w-lg">{s.body}</p>
           </div>
@@ -80,9 +80,9 @@ const steps = [
                       {[['Under $25k', 'out'], ['$25k – $50k', ''], ['$50k – $100k', 'on'], ['$100k+', '']].map(([l, st]) => (
                         <li class:list={[
                           'rounded-lg px-3 py-2 border flex items-center justify-between',
-                          st === 'on' ? 'border-clay bg-clay/15 text-paper' : 'border-line-dark text-paper/70',
+                          st === 'on' ? 'border-lime bg-lime/10 text-paper' : 'border-line-dark text-paper/70',
                           st === 'out' && 'line-through opacity-45',
-                        ]}>{l}{st === 'on' && <span class="text-brass">✓</span>}</li>
+                        ]}>{l}{st === 'on' && <span class="text-lime">✓</span>}</li>
                       ))}
                     </ul>
                   </div>
@@ -92,9 +92,9 @@ const steps = [
                       {[['ASAP', ''], ['1–3 months', 'on'], ['3–6 months', ''], ['Just researching', 'out']].map(([l, st]) => (
                         <li class:list={[
                           'rounded-lg px-3 py-2 border flex items-center justify-between',
-                          st === 'on' ? 'border-clay bg-clay/15 text-paper' : 'border-line-dark text-paper/70',
+                          st === 'on' ? 'border-lime bg-lime/10 text-paper' : 'border-line-dark text-paper/70',
                           st === 'out' && 'line-through opacity-45',
-                        ]}>{l}{st === 'on' && <span class="text-brass">✓</span>}</li>
+                        ]}>{l}{st === 'on' && <span class="text-lime">✓</span>}</li>
                       ))}
                     </ul>
                   </div>
@@ -106,11 +106,11 @@ const steps = [
                     ['2:14:05 PM', 'New lead: Kitchen remodel, budget $60–90k', 'text-paper/85'],
                     ['2:14:46 PM', 'Personal text sent to homeowner', 'text-[#8fc3a0]'],
                     ['2:14:47 PM', 'You get an alert with their details', 'text-paper/85'],
-                    ['2:19:12 PM', 'Homeowner replies, picks a consultation time', 'text-brass'],
+                    ['2:19:12 PM', 'Homeowner replies, picks a consultation time', 'text-oak-light'],
                   ].map(([t, d, c], j) => (
                     <li class="relative flex gap-4 pb-5 last:pb-0">
                       {j < 3 && <span class="absolute left-[0.3rem] top-4 bottom-0 w-px bg-line-dark" aria-hidden="true"></span>}
-                      <span class="relative mt-1.5 size-[0.65rem] rounded-full bg-ink-2 border-2 border-brass flex-none"></span>
+                      <span class="relative mt-1.5 size-[0.65rem] rounded-full bg-ink-2 border-2 border-oak-light flex-none"></span>
                       <div>
                         <p class="font-mono text-[0.7rem] text-paper/50">{t}</p>
                         <p class={`text-[0.95rem] ${c}`}>{d}</p>
@@ -128,7 +128,7 @@ const steps = [
                         <div class="mt-2 space-y-1.5">
                           {[0, 1, 2].map((k) => {
                             const booked = (j + k) % 3 === 0 || (j === 3 && k === 1);
-                            return <div class:list={['h-7 rounded-md text-[0.62rem] grid place-items-center', booked ? 'bg-clay text-white font-semibold' : 'border border-dashed border-line-dark text-paper/30']}>{booked ? 'Booked' : 'Open'}</div>;
+                            return <div class:list={['h-7 rounded-md text-[0.62rem] grid place-items-center', booked ? 'bg-lime text-ink font-semibold' : 'border border-dashed border-line-dark text-paper/30']}>{booked ? 'Booked' : 'Open'}</div>;
                           })}
                         </div>
                       </div>
@@ -152,7 +152,7 @@ const steps = [
                     <div class="flex items-center gap-3 py-1.5">
                       <p class="w-[44%] sm:w-40 flex-none text-sm text-paper/70">{l}</p>
                       <div class="flex-1 h-7 rounded-md bg-ink-3 overflow-hidden">
-                        <div class="h-full rounded-md bg-gradient-to-r from-clay to-[#c8693f] flex items-center justify-end pr-2.5 text-xs font-semibold text-white" style={`width:${w}%`}>{v}</div>
+                        <div class="h-full rounded-md bg-gradient-to-r from-lime-dark to-lime flex items-center justify-end pr-2.5 text-xs font-semibold text-ink" style={`width:${w}%`}>{v}</div>
                       </div>
                     </div>
                   ))}

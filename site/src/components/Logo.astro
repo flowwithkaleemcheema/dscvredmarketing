@@ -1,17 +1,17 @@
 ---
 interface Props { tone?: 'dark' | 'light'; class?: string }
 const { tone = 'dark', class: cls = '' } = Astro.props;
-const ink = tone === 'dark' ? '#191816' : '#f4efe6';
+const ink = tone === 'dark' ? '#14302a' : '#fafaf8';
 ---
 <span class={`inline-flex items-center gap-2.5 ${cls}`}>
   <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
     <rect x="1.5" y="1.5" width="29" height="29" rx="7" stroke={ink} stroke-width="2" />
     <path d="M9 23V9" stroke={ink} stroke-width="2.2" stroke-linecap="round" />
-    <path d="M9 9a14 14 0 0 1 14 14" stroke="#ad4721" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 4.2" />
+    <path d="M9 9a14 14 0 0 1 14 14" stroke="#a36b37" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 4.2" />
     <path d="M9 23h14" stroke={ink} stroke-width="2.2" stroke-linecap="round" />
   </svg>
   <span class="leading-none">
-    <span class="block font-display text-[1.35rem] tracking-[-0.03em]" style={`color:${ink};font-weight:520`}>Dscvred</span>
+    <span class="block font-display text-[1.35rem] tracking-[-0.03em]" style={`color:${ink};font-weight:760;letter-spacing:-0.04em`}>Dscvred</span>
     <span class="block font-mono text-[0.56rem] tracking-[0.32em] uppercase mt-0.5" style={`color:${ink};opacity:.62`}>Marketing</span>
   </span>
 </span>

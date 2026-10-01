@@ -16,7 +16,7 @@ import { site } from '../config/site';
       {faq.map((f, i) => (
         <details class="faq group border-b border-line" open={i === 0}>
           <summary class="flex items-start justify-between gap-6 py-6 text-left">
-            <span class="font-display text-xl sm:text-[1.4rem] text-ink leading-snug">{f.q}</span>
+            <span class="font-display text-xl sm:text-[1.35rem] !font-semibold tracking-[-0.02em] text-ink leading-snug">{f.q}</span>
             <span class="faq-icon grid place-items-center size-8 rounded-full border border-line text-ink flex-none mt-0.5" aria-hidden="true">
               <svg class="size-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 1v12M1 7h12" /></svg>
             </span>

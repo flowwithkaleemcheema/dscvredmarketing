@@ -3,12 +3,12 @@ const appts = [
   { day: 'Tue', time: '9:30 AM', type: 'Kitchen remodel', budget: '$85k', area: 'Frisco', status: 'Confirmed', tone: 'sage' },
   { day: 'Wed', time: '4:00 PM', type: 'Primary bath + closet', budget: '$48k', area: 'Plano', status: 'Confirmed', tone: 'sage' },
   { day: 'Thu', time: '10:00 AM', type: 'Whole-home refresh', budget: '$140k', area: 'Allen', status: 'Reminder sent', tone: 'brass' },
-  { day: 'Sat', time: '11:00 AM', type: 'Kitchen + mudroom', budget: '$72k', area: 'McKinney', status: 'Just booked', tone: 'clay' },
+  { day: 'Sat', time: '11:00 AM', type: 'Kitchen + mudroom', budget: '$72k', area: 'McKinney', status: 'Just booked', tone: 'lime' },
 ];
 const chip: Record<string, string> = {
   sage: 'bg-sage-soft text-sage',
   brass: 'bg-[#f3e8d3] text-[#8a6a33]',
-  clay: 'bg-clay-soft text-clay-dark',
+  lime: 'bg-lime text-ink',
 };
 ---
 <figure class="relative mx-auto w-full max-w-[560px] lg:max-w-none" aria-label="Illustrative example of a remodeler's booked consultation calendar">
@@ -20,7 +20,7 @@ const chip: Record<string, string> = {
         <p class="font-display text-lg text-ink leading-tight mt-0.5">This week</p>
       </div>
       <span class="inline-flex items-center gap-1.5 rounded-full bg-ink text-paper text-xs font-semibold px-3 py-1.5">
-        <span class="size-1.5 rounded-full bg-[#7fb38f]"></span>4 booked
+        <span class="size-1.5 rounded-full bg-[#c6f36b]"></span>4 booked
       </span>
     </div>
     <ul class="divide-y divide-line">
@@ -30,7 +30,7 @@ const chip: Record<string, string> = {
             <p class="font-mono text-[0.68rem] uppercase tracking-wider text-muted">{a.day}</p>
             <p class="text-[0.78rem] font-semibold text-ink whitespace-nowrap">{a.time.replace(' ', '\u00a0')}</p>
           </div>
-          <div class="min-w-0 flex-1 border-l-2 border-clay/70 pl-3">
+          <div class="min-w-0 flex-1 border-l-2 border-oak/60 pl-3">
             <p class="font-semibold text-ink text-[0.95rem] truncate">{a.type}</p>
             <p class="text-[0.8rem] text-muted truncate">Budget {a.budget} · {a.area}</p>
           </div>
@@ -54,7 +54,7 @@ const chip: Record<string, string> = {
     <div class="card ui-shadow p-4 !rounded-2xl bg-white">
       <div class="flex items-center justify-between gap-2">
         <p class="text-[0.78rem] font-semibold text-ink flex items-center gap-2">
-          <span class="grid place-items-center size-6 rounded-full bg-clay text-white text-[0.65rem]">JM</span>
+          <span class="grid place-items-center size-6 rounded-full bg-oak text-white text-[0.65rem]">JM</span>
           New lead · Kitchen
         </p>
         <p class="font-mono text-[0.65rem] text-muted whitespace-nowrap">$60–90k</p>

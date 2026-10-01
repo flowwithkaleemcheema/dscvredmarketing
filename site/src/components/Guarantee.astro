@@ -20,11 +20,11 @@ const yours = [
 <section id="guarantee" class="py-24 lg:py-32 relative overflow-hidden">
   <div class="container-x">
     <div class="max-w-4xl mx-auto text-center" data-reveal>
-      <Seal class="mx-auto drop-shadow-[0_18px_30px_rgba(173,71,33,.35)]" />
+      <Seal class="mx-auto drop-shadow-[0_18px_30px_rgba(20,48,42,.3)]" />
       <div class="mt-8 flex justify-center"><SectionLabel n="07">The guarantee</SectionLabel></div>
       <h2 class="mt-5 text-4xl sm:text-5xl lg:text-[3.6rem]">
         {n} qualified consultations in {d} days.{' '}
-        <span class="italic text-clay font-[380]">Or we work for free until you get them.</span>
+        <span class="hl">Or we work for free until you get them.</span>
       </h2>
       <p class="mt-6 text-lg sm:text-xl text-body max-w-2xl mx-auto">
         If we fall short, you stop paying our management fee and we keep working until the {n}th qualified homeowner is on your calendar.
@@ -34,7 +34,7 @@ const yours = [
 
     <div class="mt-16 grid lg:grid-cols-2 gap-5 lg:gap-6 max-w-5xl mx-auto">
       <div class="card p-7 sm:p-9" data-reveal>
-        <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-clay">What counts as qualified</p>
+        <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-oak">What counts as qualified</p>
         <ul class="mt-5 space-y-3.5">
           {qualified.map((q) => (
             <li class="flex gap-3 text-ink">
@@ -45,7 +45,7 @@ const yours = [
         </ul>
       </div>
       <div class="card p-7 sm:p-9" data-reveal style="--d:80ms">
-        <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-clay">Your side of the deal</p>
+        <p class="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-oak">Your side of the deal</p>
         <p class="mt-2 text-body text-[0.95rem]">Three things any serious remodeler already does:</p>
         <ol class="mt-5 space-y-5">
           {yours.map((y, i) => (

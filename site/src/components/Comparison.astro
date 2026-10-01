@@ -36,7 +36,7 @@ const ok = '<svg class="size-4 flex-none mt-1 text-sage" viewBox="0 0 20 20" fil
                 'px-6 pb-5 pt-6 align-bottom font-semibold text-[0.95rem]',
                 i === 2 ? 'bg-ink text-paper rounded-t-2xl' : 'text-muted',
               ]}>
-                {i === 2 ? <span class="block font-mono text-[0.65rem] uppercase tracking-[0.16em] text-brass mb-1.5">Dscvred</span> : null}
+                {i === 2 ? <span class="block font-mono text-[0.65rem] uppercase tracking-[0.16em] text-oak-light mb-1.5">Dscvred</span> : null}
                 {c}
               </th>
             ))}
@@ -74,7 +74,7 @@ const ok = '<svg class="size-4 flex-none mt-1 text-sage" viewBox="0 0 20 20" fil
               <div class:list={['flex gap-2.5', i === 2 && 'rounded-xl bg-ink text-paper p-3 -mx-1']}>
                 <Fragment set:html={icon(v, i)} />
                 <div>
-                  <dt class:list={['font-mono text-[0.62rem] uppercase tracking-[0.12em]', i === 2 ? 'text-brass' : 'text-muted']}>{i === 2 ? 'Dscvred' : cols[i]}</dt>
+                  <dt class:list={['font-mono text-[0.62rem] uppercase tracking-[0.12em]', i === 2 ? 'text-oak-light' : 'text-muted']}>{i === 2 ? 'Dscvred' : cols[i]}</dt>
                   <dd class:list={[i === 2 ? 'font-medium' : 'text-body']}>{clean(v)}</dd>
                 </div>
               </div>
