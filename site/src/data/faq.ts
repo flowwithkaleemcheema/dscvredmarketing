@@ -40,7 +40,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: 'You don’t have remodeling case studies. Why should I trust you?',
-    a: 'Fair question. We’ve built these systems for other local businesses, and we’re upfront that remodeling is new for us. That’s why the risk sits with us: the guarantee, no setup fee for founding partners, and no long contract.',
+    a: 'Fair question. Our founder has 10+ years in growth marketing, including taking a high-ticket cosmetic clinic in Dubai from 150 to 1,500 leads a month. We’re upfront that remodeling is new for us. That’s why the risk sits with us: the guarantee, no setup fee for founding partners, and no long contract.',
   },
   {
     q: 'What happens on the Pipeline Audit call?',

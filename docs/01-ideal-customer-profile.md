@@ -217,7 +217,7 @@ Same ICP logic applies. Swap terminology, platforms, currency and examples on lo
 
 - **Agency:** Dscvred Marketing
 - **Delivery:** Paid ads (Google Search, Local Services Ads, Meta), local SEO and Google Business Profile, landing pages, funnels and CRO, **plus** a speed-to-lead and nurture CRM system (missed-call text-back, instant SMS and email, nurture sequences, old-lead and past-estimate reactivation)
-- **Proof:** Results in other industries; no remodeling case studies yet, so the offer needs strong risk reversal and founding-partner positioning
+- **Proof:** No remodeling case studies yet. Founder has 10+ years in growth marketing from in-house roles: a Dubai medical-aesthetics clinic (monthly leads 150 → 1,500, 10×; two Google-penalized sites recovered) and a New York B2B tech company (marketing-influenced bookings $150K → $820K in two years, 5×; $300K+ influenced pipeline a month). The offer still needs strong risk reversal and founding-partner positioning.
 - **Pricing model:** Setup fee + monthly retainer + performance bonus
 - **Client minimum:** $3,000/month ad spend
 - **12-month goal:** 10 clients ≈ $40–50k/month (≈ $4–5k average per client)

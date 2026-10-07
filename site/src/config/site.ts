@@ -47,14 +47,15 @@ export const site = {
     title: 'Founder, Dscvred Marketing',
     photo: '', // e.g. '/images/founder.jpg' (put the file in site/public/images/)
     initials: '[YN]',
-    yearsExperience: '[X]',
+    yearsExperience: '10+',
   },
 
-  // Results from other industries. Only ever use real, verifiable numbers.
+  // Results from the founder's in-house growth roles (source: founder's resume).
+  // Only ever use real, verifiable numbers. Employers are described, not named.
   results: [
-    { value: '[X]%', label: 'lower cost per lead', context: '[Industry] client, [timeframe]' },
-    { value: '[X]×', label: 'more booked appointments', context: '[Industry] client, [timeframe]' },
-    { value: '$[X]', label: 'in tracked client revenue', context: 'across [N] clients' },
+    { value: '10×', label: 'monthly leads', context: 'Medical-aesthetics clinic, Dubai: 150 → 1,500 leads a month' },
+    { value: '5×', label: 'marketing-influenced bookings', context: 'B2B tech company, New York: $150K → $820K in two years' },
+    { value: '$300K+', label: 'influenced pipeline every month', context: 'Same company: 10–15 → 80+ qualified leads a month' },
   ],
 };
 
